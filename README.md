@@ -219,32 +219,16 @@ class MyViewcontroller: UIViewController, UITableViewDataSource, UITableViewDele
 }
 ```
 
-### 4.5 Only explicitly refer to `self` when required
+### 4.5 Refer explicitly to `self` when required
 
-When accessing properties or methods on `self`, leave the reference to `self` implicit by default:
+When accessing properties or methods on `self`, alway use `self` this way the developper knows that he is using instance properties/method:
 
 ```swift
 private class History {
 	var events: [Event]
 
 	func rewrite() {
-		events = []
-	}
-}
-```
-
-Only include the explicit keyword when required by the language—for example, in a closure, or when parameter names conflict:
-
-```swift
-extension History {
-	init(events: [Event]) {
-		self.events = events
-	}
-
-	func reload() {
-		APIService.getEvents { events in
-			self.events = events
-		}
+		self.events = []
 	}
 }
 ```
